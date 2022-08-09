@@ -3,7 +3,7 @@ import pathlib
 
 def getPdf():
 
-    import imp
+    import importlib
     from xml.dom.minidom import Element
     from selenium import webdriver
     from selenium.webdriver.common.by import By
