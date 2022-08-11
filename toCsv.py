@@ -1,25 +1,24 @@
 def toCsv():
 
-    import pathlib
+    import glob
+    import pathlib as Path
     import pandas as pd
     import tabula
     import datetime
-    pdfName = pathlib.Path('download').glob('*.pdf')
+    pdfName = Path.Path('download').glob('*.pdf')
     print(pdfName)
+
+    file = glob.glob("download/*")
 
     gb = ['Go', 'Back']
 
     dtn = datetime.datetime.now()
     dtn = dtn.strftime('%Y-%m-%d')
 
-    dfs = tabula.read_pdf(f"hogehoge.pdf", lattice=True, pages='all')
-    #download\{pdfName}
+    dfs = tabula.read_pdf(f"{file[0]}", lattice=True, pages='all')
+    
     for i in range(2):
 
         dfs[i] = dfs[i].dropna(axis = 1)
-        dfs[i].to_csv(f"timeTable{gb[i]}_{dtn}.csv", index=None)
+        dfs[i].to_csv(f"csv/timeTable{gb[i]}_{dtn}.csv", index=None)
 
-    # df = tabula.read_pdf("食堂メニュー（6.13-6.17）.pdf", lattice=True, pages='all')
-    # for i in range(1):
-
-    #     df[i].to_csv("menu2.csv", index=None)
