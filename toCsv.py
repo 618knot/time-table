@@ -10,7 +10,7 @@ def toCsv():
 
     file = glob.glob("download/*")
 
-    gb = ['goU', 'backS']
+    gb = ['goC', 'backS']
 
     dfs = tabula.read_pdf(f"{file[0]}", lattice=True, pages='all')
     
