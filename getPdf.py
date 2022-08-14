@@ -2,13 +2,8 @@ import pathlib
 
 
 def getPdf():
-
-    import importlib
-    from xml.dom.minidom import Element
     from selenium import webdriver
     from selenium.webdriver.common.by import By
-    from selenium.webdriver import chrome
-    import chromedriver_binary
     from pathlib import Path
     import time
 

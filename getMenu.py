@@ -1,11 +1,7 @@
 def getMenu():
-
-    from itertools import count
     from urllib import response
-    from numpy import imag
     import tweepy
     import requests
-    import img2pdf
     import os
     from dotenv import load_dotenv
 
