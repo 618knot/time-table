@@ -1,9 +1,9 @@
+from toJSON import toJSON
 import os
 from datetime import datetime
 from pydantic import BaseModel
 from pathlib import Path
 from fastapi import FastAPI
-from fastapi.responses import FileResponse
 app = FastAPI()
 
 class reqprop(BaseModel):
@@ -24,11 +24,16 @@ async def go(req: reqprop):
         generated_at = generated_at.strftime("%Y-%m-%d")
     
         if generated_at == req.date:
-            response = FileResponse(path = file_path, filename = f"{date}_{req.content}")
+            response = toJSON(req.content)
+            response.setdefault("generated_at", generated_at)
+            response.setdefault("status", "saved")
             return response
         elif generated_at != req.date:
             #スクレイピング、ファイル生成
-            response = FileResponse(path = file_path, filename = f"{date}_{req.content}")
+            response = toJSON(req.content)
+            response.setdefault("generated_at", date)
+            response.setdefault("status", "new")
             return response
+
     else:
         return {"message": "error: no such file"}
