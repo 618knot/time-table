@@ -4,6 +4,7 @@ def getPdf():
     import chromedriver_binary
     from pathlib import Path
     import time
+    remove("download/*")
 
     dldir_name = 'download'  # 保存先フォルダ名
     dldir_path = Path(dldir_name)
@@ -37,3 +38,10 @@ def getPdf():
     elements = driver.find_element(by=By.XPATH, value='//*[@id="paragraph_107_1615971519"]/div/div/div[1]/a')
     elements.click()
     time.sleep(5)
+
+def remove(pathname, recursive = True):
+    import glob
+    import os
+    for i in glob.glob(pathname, recursive=recursive):
+        if os.path.isfile(i):
+            os.remove(i)
