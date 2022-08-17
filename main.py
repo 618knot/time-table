@@ -1,3 +1,4 @@
+from .toCsv import toCsv
 from toJSON import toJSON
 import os
 from datetime import datetime
@@ -30,6 +31,7 @@ async def go(req: reqprop):
             return response
         elif generated_at != req.date:
             #スクレイピング、ファイル生成
+            toCsv()
             response = toJSON(req.content)
             response.setdefault("generated_at", date)
             response.setdefault("status", "new")
