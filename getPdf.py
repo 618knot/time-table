@@ -37,7 +37,7 @@ def getPdf():
 
     elements = driver.find_element(by=By.XPATH, value='//*[@id="paragraph_107_1615971519"]/div/div/div[1]/a')
     elements.click()
-    time.sleep(5)
+    time.sleep(2)
 
 def remove(pathname, recursive = True):
     import glob

@@ -3,7 +3,7 @@ def toJSON(csv_name):
 
     df = pd.read_csv("csv/" + csv_name, header=0)
 
-    key_list = ["bus station"]
+    key_list = ["bus stations"]
     contents_list = [list(df.columns)]
 
     for i in range(len(df)):
