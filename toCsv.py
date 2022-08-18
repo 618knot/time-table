@@ -1,11 +1,8 @@
 def toCsv():
-    from getPdf import getPdf
     import glob
     import pathlib as Path
     import tabula
 
-    getPdf()
-    
     remove("csv/*")
 
     file = glob.glob("download/*")
