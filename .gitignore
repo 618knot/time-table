@@ -1,5 +1,4 @@
-download
 .env
 __pycache__
-csv
+
 test.py
