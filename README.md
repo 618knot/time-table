@@ -1,2 +1,2 @@
 # timetable-backend
-URL https://young-cove-87108.herokuapp.com
+URL https://timetable-backend-kn.herokuapp.com/
