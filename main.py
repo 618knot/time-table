@@ -34,21 +34,21 @@ async def go(req: reqprop):
         generated_at = generated_at.strftime("%Y-%m-%d")
     
         if generated_at == req.date:
-            response = append(toJSON(req.content),generated_at)
+            response = append(toJSON(req.content),generated_at, "saved csv")
             return response
         elif generated_at != req.date:
             #スクレイピング、ファイル生成
             getPdf()
             toCsv()
-            response = append(toJSON(req.content),generated_at)
+            response = append(toJSON(req.content),generated_at, "new csv")
             return response
 
     else:
         return {"message": "error: no such file"}
 
-def append(response: dict, generated_at):
+def append(response: dict, generated_at, msg):
     pdf = glob.glob("download/*")
     response.setdefault("source", pdf[0])
     response.setdefault("generated at", generated_at)
-    response.setdefault("status", "saved csv")
+    response.setdefault("status", msg)
     return response
