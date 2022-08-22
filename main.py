@@ -32,11 +32,12 @@ async def timetable(req: reqprop):
             getPdf()
         
         #目的csvがない
-        if req.content not in glob.glob("csv/*"):
-            toCsv()
+        if "csv\\" + req.content not in glob.glob("csv/*"):
+            updated_at = "file not found" #スクレイピングとファイル生成に飛ばす
+        else:
+            t = os.path.getmtime(file_path)
+            updated_at = str_to_date(datetime.datetime.fromtimestamp(t).strftime("%Y-%m-%d"))
 
-        t = os.path.getmtime(file_path)
-        updated_at = str_to_date(datetime.datetime.fromtimestamp(t).strftime("%Y-%m-%d"))
 
     
         if updated_at == reqdate:
@@ -46,6 +47,11 @@ async def timetable(req: reqprop):
             #スクレイピング、ファイル生成
             getPdf()
             toCsv()
+
+            #念のため更新
+            t = os.path.getmtime(file_path)
+            updated_at = str_to_date(datetime.datetime.fromtimestamp(t).strftime("%Y-%m-%d"))
+
             response = append(toJSON(req.content),updated_at, "new csv")
             return response
 
