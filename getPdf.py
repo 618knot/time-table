@@ -45,6 +45,8 @@ def getPdf():
             break
         else:
             time.sleep(1)
+    
+    driver.quit()
 
 def remove(pathname, recursive = True):
     import glob
