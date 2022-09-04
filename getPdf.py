@@ -3,6 +3,7 @@ def getPdf():
     from selenium.webdriver.common.by import By
     import chromedriver_binary
     from pathlib import Path
+    import glob
     import time
     remove("download/*")
 
@@ -38,6 +39,11 @@ def getPdf():
     elements = driver.find_element(by=By.XPATH, value='//*[@id="paragraph_107_1615971519"]/div/div/div[1]/a')
     elements.click()
     time.sleep(2)
+    while 1:
+        if glob.glob("download/*") != []:
+            break
+        else:
+            time.sleep(1)
 
 def remove(pathname, recursive = True):
     import glob
