@@ -14,6 +14,7 @@ def getPdf():
 
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
+    options.add_argument('window-size=500,500')
     options.add_experimental_option("prefs", {
         "download.default_directory": download_dir,
         "plugins.always_open_pdf_externally": True
